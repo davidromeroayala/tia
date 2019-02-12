@@ -221,9 +221,16 @@ public class Fichero {
     public static void encriptar(ArrayList<Agente> vAgente,ArrayList<String> vPiso,ArrayList<String> vArma){
      
         File f = new File ("recursos/cifrado.dat");
+        
         FileOutputStream fo=null;
         ObjectOutputStream escribir=null;
 
+        File[] files = f.getParentFile().listFiles();
+        for (int i=0; i<files.length;i++){
+            files[i].delete();
+        }
+        
+        
         if(!f.exists()){
               try {
                    f.getParentFile().mkdirs();
