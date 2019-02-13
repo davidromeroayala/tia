@@ -29,7 +29,7 @@ public class A007 extends Agente {
             armas+=vArma + " ";
         }
         
-        return super.toString() + "muertes=" + muertes + ", vArmas=" + armas ;
+        return super.toString() + "\nMuertes " + muertes + "\n vArmas " + armas ;
     }
 
     

@@ -5,13 +5,14 @@
  */
 package tia;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * 
  * @author alumno
  */
-public class Agente {
+public class Agente implements Serializable{
     protected String nombre;
     protected String  edad;
     protected String direccion;

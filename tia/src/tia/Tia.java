@@ -29,7 +29,10 @@ public class Tia {
         File fichero = new File ("recursos/cifrado.dat");
         //inicializamos con los datos adecuados
         if (fichero.exists()) {
-            
+            Fichero.desencriptar();
+            vAgentes= Fichero.leerAgente();
+            vArmas= Fichero.leerArma();
+            vPisos= Fichero.leerPiso(); 
         }else{
              vAgentes = Fichero.leerAgente();
              vArmas = Fichero.leerArma();
@@ -91,9 +94,17 @@ public class Tia {
                     }
                     break;
                 case 6:
-                    Fichero.encriptar(vAgentes, vPisos, vArmas);
+                    Fichero.encriptar(vAgentes,vPisos, vArmas);
+                    vAgentes=null;
+                    vArmas=null;
+                    vPisos=null;
                     break;
                 case 7:
+                    
+                    Fichero.desencriptar();
+                    vAgentes= Fichero.leerAgente();
+                    vArmas= Fichero.leerArma();
+                    vPisos= Fichero.leerPiso(); 
                     break;
                 case 8:
                     System.out.println("Adios");

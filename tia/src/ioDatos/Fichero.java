@@ -7,14 +7,17 @@ package ioDatos;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.omg.CORBA_2_3.portable.OutputStream;
 import tia.Agente;
 
 /**
@@ -154,7 +157,7 @@ public class Fichero {
   //Lectura de un fichero de texto y devulve el ArrayList de pisos
      public static ArrayList<String> leerPiso(){
         ArrayList<String> vArmas=new ArrayList();
-        File f=new File("recursos/pisos.txt");
+        File f=new File("recursos/pisos.dat");
         Scanner leer = null;
     
         if(!f.exists()){
@@ -184,7 +187,7 @@ public class Fichero {
     }     
     public static ArrayList<Agente> leerAgente(){
     ArrayList<Agente> vAgente=new ArrayList();
-    File f=new File("recursos/agente.txt");
+    File f=new File("recursos/agente.dat");
     FileInputStream fi = null;
     ObjectInputStream leer = null;
     
@@ -257,7 +260,51 @@ public class Fichero {
             }
         }
     }
+     public static void desencriptar(){
      
+        
+        
+        
+        File f = new File ("recursos/cifrado.dat");
+        
+        FileInputStream fo;
+        ObjectInputStream leer=null;
+          
+        
+
+        if(!f.exists()){
+              try {
+                   f.getParentFile().mkdirs();
+                  f.createNewFile();
+              } catch (IOException ex) {
+                  System.out.println("Fallo al comprobar el archivo");
+              }
+        }
+        try {
+           fo = new FileInputStream(f);
+           leer=new ObjectInputStream(fo);
+          
+            escribirAgente((ArrayList<Agente>)leer.readObject());
+           escribirArmas((ArrayList<String>)leer.readObject());
+           escribirPisos((ArrayList<String>)leer.readObject());
+          
+           
+           
+        } catch (IOException ex) {
+            System.out.println("No se puede leer en el fichero");
+        } catch (ClassNotFoundException ex) {
+              Logger.getLogger(Fichero.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            if (leer!=null)
+                try {
+                    leer.close();
+            } catch (IOException ex) {
+                    System.out.println("Fallo ");
+            }
+        }
+        
+       
+    }
 }
  
 

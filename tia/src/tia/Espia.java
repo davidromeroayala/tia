@@ -26,7 +26,7 @@ public class Espia extends Agente{
         for (String pi : vPiso) {
             pisos+=pi + " ";
         }
-        return super.toString() + "\nPisos=" + pisos ;
+        return super.toString() + "\nPisos " + pisos ;
     }
     
     
